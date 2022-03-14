@@ -6,6 +6,7 @@ from const import *
 from platforms import Platforms
 from bg import Background
 from player import Player
+from ps import Platformssmall
 
 #НАСТРОЙКА ИГРЫ (ИНИЦИАЛИЗАЦИЯ)
 #инициализация библиотеки
@@ -22,9 +23,10 @@ run = True
 all_sprites = pygame.sprite.Group()
 #создаём группу (список) для препятствий
 platforms = pygame.sprite.Group()
+ps = pygame.sprite.Group()
 #создание игровых объектов
 platforms1 = Platforms(720)#здесь вызовется init и объект создастся
-platforms2 = Platforms(-240)
+ps1 = Platformssmall(480)
 player = Player()
 bg1 = Background(0,0)
 bg2 = Background(0,-SCREEN_HEIGHT)
@@ -33,9 +35,10 @@ all_sprites.add(bg1)
 all_sprites.add(bg2)
 all_sprites.add(player)
 all_sprites.add(platforms1)
-all_sprites.add(platforms2)
+all_sprites.add(ps1)
 platforms.add(platforms1)
-platforms.add(platforms2)
+ps.add(ps1)
+
 # основной игровой цикл
 while run:
     #0 задержка для фиксированного FPS

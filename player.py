@@ -12,14 +12,14 @@ class Player(pygame.sprite.Sprite):
         self.rect.midbottom = (SCREEN_WIDTH // 2, SCREEN_HEIGHT - 59)
         self.isJump = False
         self.jumpCount = 10
-        self.speedx = 10
+        self.speedx = 6
         self.upgrade = False
         self.upgrade_time = pygame.time.get_ticks()
         self.shield = False
 
 
     def update(self):
-        self.calc_grav()
+
         keys = pygame.key.get_pressed()
         #если нажата стрелка вниз
         if keys[pygame.K_LEFT]:
@@ -35,10 +35,10 @@ class Player(pygame.sprite.Sprite):
         if self.rect.right >= SCREEN_WIDTH:
             self.rect.right = SCREEN_WIDTH
         if not(self.isJump):
-            if keys[pygame.K_UP] and y > 5:
-                self.rect.y -= speed
-            if keys[pygame.K_DOWN]and y < 500 - height -15:
-                self.rect.y += speed
+            if keys[pygame.K_UP] and self.rect.y > 5:
+                self.rect.y -= SPEED
+            if keys[pygame.K_DOWN]and self.rect.y < 500 - SCREEN_HEIGHT -15:
+                self.rect.y += SPEED
         #прыжок
             if keys[pygame.K_SPACE]:
                 self.isJump = True
@@ -53,20 +53,4 @@ class Player(pygame.sprite.Sprite):
                 self.isJump = False
                 self.jumpCount = 10
         
-    def calc_grav(self):
-        if self.change_y == 0:
-            self.change_y = 1
-        else:
-            
-	    self.change_y += .95
-	    
-	    # Если уже на земле, то ставим позицию Y как 0
-	if self.rect.y >= SCREEN_HEIGHT - self.rect.height and self.change_y >= 0:
-	    self.change_y >= 0:
-		self.change_y = 0
-		self.rect.y = SCREEN_HEIGHT - self.rect.height
-		self.change_y += .9               
-                    self.change_y = 0
-                    self.rect.y = SCREEN_HEIGHT - self.rect.height
-
 
