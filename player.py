@@ -16,10 +16,12 @@ class Player(pygame.sprite.Sprite):
         self.upgrade = False
         self.upgrade_time = pygame.time.get_ticks()
         self.shield = False
+        self.speedy = 1
+        self.rect.centery = SCREEN_HEIGHT // 2
+
 
 
     def update(self):
-
         keys = pygame.key.get_pressed()
         #если нажата стрелка вниз
         if keys[pygame.K_LEFT]:
@@ -52,5 +54,36 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.isJump = False
                 self.jumpCount = 10
-        
+                
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+   
