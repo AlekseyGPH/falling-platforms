@@ -25,9 +25,8 @@ all_sprites = pygame.sprite.Group()
 platforms = pygame.sprite.Group()
 ps = pygame.sprite.Group()
 #создание игровых объектов
-platforms1 = Platforms(720)#здесь вызовется init и объект создастся
-ps1 = Platformssmall(520)
-ps2 = Platformssmall(320)
+platforms1 = Platforms(0,720)#здесь вызовется init и объект создастся
+ps1 = Platformssmall()
 player = Player()
 bg1 = Background(0,0)
 bg2 = Background(0,-SCREEN_HEIGHT)
@@ -37,10 +36,9 @@ all_sprites.add(bg2)
 all_sprites.add(player)
 all_sprites.add(platforms1)
 all_sprites.add(ps1)
-all_sprites.add(ps2)
 platforms.add(platforms1)
 ps.add(ps1)
-ps.add(ps2)
+
 
 
 # основной игровой цикл
@@ -57,7 +55,7 @@ while run:
     all_sprites.update()
     # ПРОВЕРКА СТОЛКНОВЕНИЙ
     #проверка столкновений игрока и платформ
-    hits = pygame.sprite.spritecollide(player, ps, False)
+    hits = pygame.sprite.spritecollide(player, ps, platforms, False)
     for hit in hits:
         if player.rect.centery > hit.rect.top:
             player.rect.bottom = hit.rect.top

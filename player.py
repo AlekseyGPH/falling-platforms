@@ -8,16 +8,12 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image,(60,45))
         self.rect = self.image.get_rect()
         self.rect.centerx = SCREEN_WIDTH // 2
-        self.rect.bottom = SCREEN_HEIGHT - 10
-        self.rect.midbottom = (SCREEN_WIDTH // 2, SCREEN_HEIGHT - 59)
+        self.rect.bottom = SCREEN_HEIGHT - 56
         self.isJump = False
-        self.jumpCount = 10
+        self.jumpCount = PLAYER_JUMP_COUNT
         self.speedx = 6
-        self.upgrade = False
-        self.upgrade_time = pygame.time.get_ticks()
-        self.shield = False
         self.speedy = 1
-        self.rect.centery = SCREEN_HEIGHT // 2
+
 
 
 
@@ -36,7 +32,7 @@ class Player(pygame.sprite.Sprite):
         #правая граница
         if self.rect.right >= SCREEN_WIDTH:
             self.rect.right = SCREEN_WIDTH
-        if not(self.isJump):
+        if not self.isJump:
             if keys[pygame.K_UP] and self.rect.y > 5:
                 self.rect.y -= SPEED
             if keys[pygame.K_DOWN]and self.rect.y < 500 - SCREEN_HEIGHT -15:
@@ -45,15 +41,17 @@ class Player(pygame.sprite.Sprite):
             if keys[pygame.K_SPACE]:
                 self.isJump = True
         else:
-            if self.jumpCount >= -10:
+            #если прыжок не закончен
+            if self.jumpCount >= -PLAYER_JUMP_COUNT:
+                
                 if self.jumpCount < 0:
                     self.rect.y += (self.jumpCount ** 2) // 2
-                else:
+                elif self.jumpCount >= 0:
                     self.rect.y -= (self.jumpCount ** 2) // 2
                 self.jumpCount -= 1
             else:
                 self.isJump = False
-                self.jumpCount = 10
+                self.jumpCount = PLAYER_JUMP_COUNT
                 
 
 
