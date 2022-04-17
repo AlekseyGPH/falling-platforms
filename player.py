@@ -49,11 +49,11 @@ class Player(pygame.sprite.Sprite):
                 elif self.jumpCount >= 0:
                     self.rect.y -= (self.jumpCount ** 2) // 2
                 self.jumpCount -= 1
+            # прыжок закончен
             else:
                 self.isJump = False
                 self.jumpCount = PLAYER_JUMP_COUNT
-                
-
+        
 
 
 

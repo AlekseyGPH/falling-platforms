@@ -18,11 +18,12 @@ class Platformssmall(pygame.sprite.Sprite):
         player = Player()
         
     def update(self):
-        hits = pygame.sprite.spritecollide(player, ps, platforms, False)
-        for hit in hits:
-            if player.rect.centery > hit.rect.top:
-                player.rect.bottom = hit.rect.top
-                player.speedy = 0
+        pass
+##        hits = pygame.sprite.spritecollide(player, ps, platforms, False)
+##        for hit in hits:
+##            if player.rect.centery > hit.rect.top:
+##                player.rect.bottom = hit.rect.top
+##                player.speedy = 0
 ##        if self.rect.top >= SCREEN_HEIGHT:
 ##            self.rect.left = randint(0, SCREEN_WIDTH - self.rect.width)
 ##            self.rect.bottom = 0

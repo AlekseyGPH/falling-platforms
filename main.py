@@ -36,6 +36,7 @@ all_sprites.add(bg2)
 all_sprites.add(player)
 all_sprites.add(platforms1)
 all_sprites.add(ps1)
+platforms.add(ps1)
 platforms.add(platforms1)
 ps.add(ps1)
 
@@ -55,11 +56,21 @@ while run:
     all_sprites.update()
     # ПРОВЕРКА СТОЛКНОВЕНИЙ
     #проверка столкновений игрока и платформ
-    hits = pygame.sprite.spritecollide(player, ps, platforms, False)
-    for hit in hits:
-        if player.rect.centery > hit.rect.top:
-            player.rect.bottom = hit.rect.top
-            player.speedy = 0
+    hits = pygame.sprite.spritecollide(player, platforms, False)
+    #перебор всех платформ, с которыми столкнулся игрок
+    if hits:
+        player.speedy = 0
+        for hit in hits:
+            # если летели на платформу сверху
+            if player.jumpCount <= 0:
+                # упал на верхнюю границу платформы
+                if player.rect.bottom > hit.rect.centery:
+                    player.rect.bottom = hit.rect.top
+                    player.isJump = False
+    else:
+        player.speedy = 5
+
+
     
 
         
